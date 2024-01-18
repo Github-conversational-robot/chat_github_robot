@@ -1,0 +1,25 @@
+<template>
+    <div class="home">
+      <el-container height="100%">
+        <el-aside width="100px">
+          <Nav></Nav>
+        </el-aside>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+      </el-container>
+    </div>
+  </template>
+  
+  <style lang="scss" scoped>
+  .home {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(39, 42, 55);
+    border-radius: 0px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  </style>
