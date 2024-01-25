@@ -4,3 +4,9 @@
 
 ## 前端
 采用VUE编写，代码参考了 [https://github.com/seisgo/EllipseFit](https://gitee.com/mao-yongyao/chatroom)在此表示感谢！
+
+## 后端
+springboot, mybatis, matrix one, spring security
+
+## 贡献规则
+参考contributing.md
