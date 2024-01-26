@@ -8,5 +8,9 @@
 ## 后端
 springboot, mybatis, matrix one, spring security
 
+## milestone
+1-26 构建github action CI流程
+
+
 ## 贡献规则
 参考contributing.md
