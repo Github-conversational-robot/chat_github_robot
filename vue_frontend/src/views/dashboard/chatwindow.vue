@@ -170,17 +170,6 @@ export default {
         };
         this.sendMsg(chatMsg);
         this.$emit('personCardSort', this.frinedInfo.id)
-        this.inputMsg = "";
-        let data = {
-          prompt: chatMsg.msg,
-          temperature: 1,
-          top_p: 1,
-          model: 'text-davinci-003',
-          max_tokens: 2048,
-          frequency_penalty: 0,
-          presence_penalty: 0,
-          stop: ["Human:", "AI:"]
-        }
         this.loading = true
         this.isSend = true;
         let chatGPT = {
@@ -191,13 +180,16 @@ export default {
           chatType: 0, //信息类型，0文字，1图片
           uid: "1002", //uid
         };
+        let data = {
+        filePath : "www.github.com",
+        inputMes : this.inputMsg,
+        }
+        console.log(this.inputMsg);
         this.sendMsg(chatGPT);
         chatgpt(data).then((res) => {
           this.isSend = false;
-          this.chatList[this.chatList.length-1].msg = res.choices[0].text;
+          this.chatList[this.chatList.length-1].msg = res;
         });
-
-
       } else {
         this.$message({
           message: "消息不能为空哦~",
@@ -205,23 +197,6 @@ export default {
         });
       }
     },
-    //发送表情
-    sendEmoji(msg) {
-      let chatMsg = {
-        headImg: require("@/assets/img/head_portrait.jpg"),
-        name: "大毛是小白",
-        time: "09:12 AM",
-        msg: msg,
-        chatType: 1, //信息类型，0文字，1图片
-        extend: {
-          imgType: 1, //(1表情，2本地图片)
-        },
-        uid: "1001",
-      };
-      this.sendMsg(chatMsg);
-      this.clickEmoji();
-    },
-
   },
 };
 </script>
