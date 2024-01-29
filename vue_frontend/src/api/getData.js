@@ -30,7 +30,8 @@ export const getChatMsg = params => {
 }
 
   // 获取聊天信息
-  export const chatgpt = params => {
+  export function chatgpt (params) {
+    /*
     return axios({
       method: 'post',
       url: `https://api.openai.com/v1/completions`,
@@ -40,4 +41,11 @@ export const getChatMsg = params => {
         'Authorization': `Bearer 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`,
       }
     }).then(res => res.data)
+    */
+
+    return request({
+      url: '/api/user/chat',
+      method: 'post',
+      data:params
+    })
   }
