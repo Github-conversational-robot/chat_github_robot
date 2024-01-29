@@ -1,9 +1,11 @@
-from flask import current_app
 import os
 
 from langchain.document_loaders import PyPDFLoader
 from langchain.document_loaders import Docx2txtLoader
 from langchain.document_loaders import TextLoader
+
+from config import Config
+config = Config()
 
 # TODO: 兼容更多文件格式的加载
 def load_documents_from_folder(base_dir):
@@ -16,7 +18,7 @@ def load_documents_from_folder(base_dir):
         elif file_path.endswith('.docx'):
             loader = Docx2txtLoader(file_path)
             documents.extend(loader.load())
-        else :
+        elif file_path.endswith('.go'):
             loader = TextLoader(file_path)
             documents.extend(loader.load())
 
@@ -52,7 +54,7 @@ def generate_qa_chain(vectorstore):
     logging.getLogger('langchain.retrievers.multi_query').setLevel(logging.INFO)
 
     # 实例化一个大模型工具 - OpenAI的GPT-3.5
-    # llm = ChatOpenAI(model_name= current_app.config['LLM_MODEL_NAME'], temperature=0)
+    # llm = ChatOpenAI(model_name= config.LLM_MODEL_NAME'], temperature=0)
     llm = ChatOpenAI(model_name= 'gpt-3.5-turbo', temperature=0)
 
     # 实例化一个MultiQueryRetriever
@@ -64,7 +66,8 @@ def generate_qa_chain(vectorstore):
     return qa_chain
 
 def check_repo_folder_exists(repoName):
-    folder_path = os.path.join(current_app.config['PATH_TO_GITREPO_DIR'], repoName)
+    # TODO: 这里的gitRepo从config中读
+    folder_path = os.path.join(config.PATH_TO_GITREPO_DIR, repoName)
     if os.path.exists(folder_path) and os.path.isdir(folder_path):
         return True
     else:
@@ -75,11 +78,11 @@ from langchain.vectorstores import Matrixone
 from langchain.embeddings import OpenAIEmbeddings
 def get_vectorstore(repoName):
     return Matrixone(
-        host=current_app.config['DATABASE_HOST'],
-        port=current_app.config['DATABASE_PORT'],
-        user=current_app.config['DATABASE_USER'],
-        password=current_app.config['DATABASE_PSW'],
-        dbname=current_app.config['DATABASE_DBNAME'],
+        host=config.DATABASE_HOST,
+        port=config.DATABASE_PORT,
+        user=config.DATABASE_USER,
+        password=config.DATABASE_PSW,
+        dbname=config.DATABASE_DBNAME,
         table_name=repoName,
         embedding=OpenAIEmbeddings()
     )
