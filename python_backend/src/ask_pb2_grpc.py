@@ -40,10 +40,10 @@ class LangchainAskStub(object):
                 request_serializer=ask__pb2.EstablishSessionRequest.SerializeToString,
                 response_deserializer=ask__pb2.EstablishSessionReply.FromString,
                 )
-        self.processUserQuestion = channel.unary_unary(
-                '/ask.LangchainAsk/processUserQuestion',
-                request_serializer=ask__pb2.EstablishSessionRequest.SerializeToString,
-                response_deserializer=ask__pb2.EstablishSessionReply.FromString,
+        self.ProcessUserQuestion = channel.unary_unary(
+                '/ask.LangchainAsk/ProcessUserQuestion',
+                request_serializer=ask__pb2.QuestionRequest.SerializeToString,
+                response_deserializer=ask__pb2.QuestionReply.FromString,
                 )
 
 
@@ -82,7 +82,7 @@ class LangchainAskServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def processUserQuestion(self, request, context):
+    def ProcessUserQuestion(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -116,10 +116,10 @@ def add_LangchainAskServicer_to_server(servicer, server):
                     request_deserializer=ask__pb2.EstablishSessionRequest.FromString,
                     response_serializer=ask__pb2.EstablishSessionReply.SerializeToString,
             ),
-            'processUserQuestion': grpc.unary_unary_rpc_method_handler(
-                    servicer.processUserQuestion,
-                    request_deserializer=ask__pb2.EstablishSessionRequest.FromString,
-                    response_serializer=ask__pb2.EstablishSessionReply.SerializeToString,
+            'ProcessUserQuestion': grpc.unary_unary_rpc_method_handler(
+                    servicer.ProcessUserQuestion,
+                    request_deserializer=ask__pb2.QuestionRequest.FromString,
+                    response_serializer=ask__pb2.QuestionReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -218,7 +218,7 @@ class LangchainAsk(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def processUserQuestion(request,
+    def ProcessUserQuestion(request,
             target,
             options=(),
             channel_credentials=None,
@@ -228,8 +228,8 @@ class LangchainAsk(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ask.LangchainAsk/processUserQuestion',
-            ask__pb2.EstablishSessionRequest.SerializeToString,
-            ask__pb2.EstablishSessionReply.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ask.LangchainAsk/ProcessUserQuestion',
+            ask__pb2.QuestionRequest.SerializeToString,
+            ask__pb2.QuestionReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

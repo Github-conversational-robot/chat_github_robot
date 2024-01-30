@@ -9,6 +9,7 @@ from utils import *
 from config import Config
 config = Config()
 
+os.environ["OPENAI_API_KEY"] = '<>'
 
 class LangchainAsk(ask_pb2_grpc.LangchainAskServicer):
     def SayHello(self, request, context):
@@ -23,6 +24,7 @@ class LangchainAsk(ask_pb2_grpc.LangchainAskServicer):
             reply.message = "Project '%s' not found." % request.name
             return reply
 
+        print("Loading Project……")
         # 1.Load 导入Document Loaders
         repo_dir = config.PATH_TO_GITREPO_DIR + request.name
         documents = load_documents_from_folder(repo_dir)
@@ -47,16 +49,17 @@ class LangchainAsk(ask_pb2_grpc.LangchainAskServicer):
 
         return reply
 
-    def processUserQuestion(self, request, context):
+    def ProcessUserQuestion(self, request, context):
         # 构建 QuestionReply 响应消息
         reply = ask_pb2.QuestionReply()
 
+        # TODO: 这里可以搞一个缓存
         vectorstore = get_vectorstore(request.name)
         qa_chain = generate_qa_chain(vectorstore)
-        answer = qa_chain({"query": request.question})
+        result = qa_chain({"query": request.question})
 
-        reply.answer = answer
-        reply.history = ""
+        reply.answer = result["result"]
+        reply.history = result["history"]
 
         return reply
 

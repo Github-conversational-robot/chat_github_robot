@@ -44,9 +44,9 @@ class QuestionReply(_message.Message):
     __slots__ = ("answer", "history")
     ANSWER_FIELD_NUMBER: _ClassVar[int]
     HISTORY_FIELD_NUMBER: _ClassVar[int]
-    answer: bool
+    answer: str
     history: str
-    def __init__(self, answer: bool = ..., history: _Optional[str] = ...) -> None: ...
+    def __init__(self, answer: _Optional[str] = ..., history: _Optional[str] = ...) -> None: ...
 
 class HelloRequest(_message.Message):
     __slots__ = ("name",)

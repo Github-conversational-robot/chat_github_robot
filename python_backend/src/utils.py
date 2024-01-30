@@ -47,6 +47,7 @@ import logging
 from langchain.chat_models import ChatOpenAI
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.chains import RetrievalQA
+from langchain.chains.conversation.memory import ConversationSummaryMemory
 
 def generate_qa_chain(vectorstore):
     # 设置Logging
@@ -61,7 +62,8 @@ def generate_qa_chain(vectorstore):
     retriever_from_llm = MultiQueryRetriever.from_llm(retriever=vectorstore.as_retriever(), llm=llm)
 
     # 实例化一个RetrievalQA链
-    qa_chain = RetrievalQA.from_chain_type(llm,retriever=retriever_from_llm)
+    # qa_chain = RetrievalQA.from_chain_type(llm,retriever=retriever_from_llm)
+    qa_chain = RetrievalQA.from_chain_type(llm,retriever=retriever_from_llm,memory=ConversationSummaryMemory(llm=llm))
 
     return qa_chain
 

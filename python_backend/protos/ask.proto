@@ -34,7 +34,7 @@ service LangchainAsk {
 
   rpc EstablishSession(EstablishSessionRequest) returns (EstablishSessionReply) {}
 
-  rpc processUserQuestion(EstablishSessionRequest) returns (EstablishSessionReply) {}
+  rpc ProcessUserQuestion(QuestionRequest) returns (QuestionReply) {}
 }
 
 message LoadRepoRequest{
@@ -61,7 +61,7 @@ message QuestionRequest{
 }
 
 message QuestionReply{
-  bool answer = 1;
+  string answer = 1;
   string history = 2;
 }
 
