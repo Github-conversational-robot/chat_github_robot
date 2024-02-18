@@ -16,73 +16,57 @@ import java.util.Set;
 public interface SysUserService {
 
     /**
-     * 增加用户
-     *
-     * @param user 待新增的用户
-     * @return 增加成功的用户
+     * create user
+     * @param user new user
      */
     SysUser create(SysUser user);
 
     /**
-     * 删除用户
-     *
-     * @param user 待删除的用户
-     * @return 删除成功的用户
+     * delete user from system
      */
     SysUser delete(SysUser user);
 
     /**
-     * 修改用户
-     *
-     * @param user 待修改的用户
-     * @return 修改成功的用户
+     * update user info
      */
     SysUser update(SysUser user);
 
     /**
-     * 根据id查找用户
-     *
-     * @param id 用户id
-     * @return 用户信息
+     * find user based on ip
+     * @return  related user
      */
     SysUser findById(Long id);
 
     /**
-     * 根据userName查找用户
-     *
-     * @param userName 用户帐号
-     * @return 用户帐号对应的用户
+     * find user based on user namae
+     * @param userName
+     * @return related user
      */
     SysUser findByUserName(String userName);
 
     /**
-     * 判断注册使用的邮箱是否存在
-     *
-     * @param email 邮箱号
-     * @return 是否找到
+     * check email whether exist in the system
+     * @param email
+     * @return ture - > exist, false -> do not exist
      */
     boolean registerEmailExist(String email);
 
     /**
-     * 获取用户信息
-     *
-     * @return 用户信息
+     * get user info
+     * @return user info
      */
     UserDetails getUserInfo();
 
+    // TODO: delete
     /**
      * 修改用户头像
-     *
      * @param file 文件
      * @return json
      */
     Map<String, String> updateAvatar(MultipartFile file);
 
     /**
-     * 获取用户角色信息
-     *
-     * @param userId 用户id
-     * @return 角色信息
+     * get user role
      */
     List<SysRole> getUserRoles(Long userId);
 

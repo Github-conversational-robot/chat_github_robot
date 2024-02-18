@@ -14,9 +14,9 @@ import java.util.List;
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
     /**
-     * 查询用户角色
-     * @param userId 用户id
-     * @return 角色信息
+     * slect user role
+     * @param userId user id
+     * @return user information
      */
     @Select("select r.id,r.role_code,r.role_name,r.description,r.enabled,r.create_time,r.update_time " +
             "from sys_role r " +
@@ -24,9 +24,9 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     List<SysRole> selectUserRoles(Long userId);
 
     /**
-     * 查询用户权限
-     * @param userId 用户id
-     * @return 权限信息
+     * select usrers' permission
+     * @param userId  user id
+     * @return permission information
      */
     @Select(" SELECT * " +
             " FROM " +

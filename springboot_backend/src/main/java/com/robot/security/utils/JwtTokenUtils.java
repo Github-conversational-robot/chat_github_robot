@@ -64,7 +64,6 @@ public class JwtTokenUtils implements InitializingBean {
                 .claim(AUTHORITIES_KEY, authorities)
                 .setExpiration(new Date((new Date()).getTime() + jwtSecurityProperties.getTokenValidityInSeconds()))
                 .signWith(key, SignatureAlgorithm.HS512)
-                // 加入ID确保生成的 Token 都不一致
                 .setId(IdUtil.simpleUUID())
                 .compact();
     }

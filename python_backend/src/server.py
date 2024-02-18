@@ -44,7 +44,7 @@ class LangchainAsk(ask_pb2_grpc.LangchainAskServicer):
         reply = ask_pb2.EstablishSessionReply()
         reply.success = True
         reply.message = "test_EstablishSession()"
-
+        
         return reply
 
     def processUserQuestion(self, request, context):

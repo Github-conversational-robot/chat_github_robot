@@ -1,4 +1,4 @@
-package com.robot.security.rest;
+package com.robot.security.controller;
 import com.robot.security.service.dto.UserChatMesDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

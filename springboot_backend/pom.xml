@@ -33,7 +33,7 @@
     <!--集中管理依赖版本-->
     <properties>
         <!-- JDK版本号 -->
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <!-- druid版本号 -->
         <druid.version>1.1.10</druid.version>
         <!-- log4jdbc版本号 -->
@@ -162,6 +162,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+            <version>1.18.30</version>
         </dependency>
 
         <!-- fastjson -->

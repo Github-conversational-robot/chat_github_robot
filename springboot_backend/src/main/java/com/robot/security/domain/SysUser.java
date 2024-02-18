@@ -17,7 +17,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-@ApiModel(value = "用户信息")
+@ApiModel(value = "user information")
 @Data
 @SuperBuilder
 @NoArgsConstructor
@@ -36,7 +36,7 @@ public class SysUser implements Serializable {
     private String nickName;
 
     /**
-     * 性别 0-未知 1-male,2-female
+     * gender 0-unknown 1-male,2-female
      */
     private Integer gender;
 

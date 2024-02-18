@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // 密码加密方式
+        // the method for the encoder of the password
         return new BCryptPasswordEncoder();
     }
 
@@ -98,7 +98,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //允许匿名及登录用户访问
                 .antMatchers("/api/auth/**", "/api/guest/**", "/error/**").permitAll()
-                // 所有请求都需要认证
+                // 其他请求都需要认证
                 .anyRequest().authenticated()
                 .and().apply(securityConfigurerAdapter());
 

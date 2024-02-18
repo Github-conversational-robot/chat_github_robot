@@ -51,7 +51,7 @@ public class SysUserServiceImpl implements SysUserService {
         if (sysUserMapper.insert(user) > 0) {
             return user;
         }
-        throw new RuntimeException("增加用户信息失败");
+        throw new RuntimeException("[error] cannot add new user");
     }
 
     @Override
@@ -62,7 +62,7 @@ public class SysUserServiceImpl implements SysUserService {
         if (sysUserMapper.delete(queryWrapper) > 0) {
             return user;
         }
-        throw new RuntimeException("删除用户信息失败");
+        throw new RuntimeException("[error] cannot delete user");
     }
 
     @Override

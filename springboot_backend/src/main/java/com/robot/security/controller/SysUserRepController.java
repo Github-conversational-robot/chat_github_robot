@@ -1,4 +1,4 @@
-package com.robot.security.rest;
+package com.robot.security.controller;
 
 import com.robot.security.domain.SysRepCard;
 import com.robot.security.service.SysUserRepService;
