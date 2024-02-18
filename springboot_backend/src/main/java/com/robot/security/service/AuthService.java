@@ -9,32 +9,25 @@ import java.util.Map;
 public interface AuthService {
 
     /**
-     * 注册
-     *
-     * @param authUserDto 认证用户请求信息
-     * @return 是否成功
+     * @param authUserDto authentication user information
+     * @return whether success
      */
     boolean register(AuthUserDto authUserDto);
 
     /**
-     * 登录授权
-     *
-     * @param authUserDto 认证用户请求信息
-     * @param request Http请求
-     * @return 认证用户返回信息
+     * @param authUserDto authentication user information
+     * @return //TODO
      */
-    Map<String, Object> login(AuthUserDto authUserDto, HttpServletRequest request);
+    Map<String, Object> login(AuthUserDto authUserDto);
 
     /**
-     * 向指定邮箱发送验证码
-     *
-     * @param email 邮箱号
+     * send code to the email
+     * @param email number
      */
     void sendMailCode(String email);
 
     /**
-     * 退出登录
-     * @param request Http请求
+     * @param request Http request
      */
     void logout(HttpServletRequest request);
 }

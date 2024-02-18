@@ -91,7 +91,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> login(AuthUserDto authUserDto, HttpServletRequest request) {
+    public Map<String, Object> login(AuthUserDto authUserDto) {
 
         try {
             String password = RsaUtils.decryptByPrivateKey(privateKey, authUserDto.getPassword());

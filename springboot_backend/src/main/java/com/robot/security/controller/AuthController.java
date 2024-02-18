@@ -1,4 +1,4 @@
-package com.robot.security.rest;
+package com.robot.security.controller;
 
 import com.robot.security.service.AuthService;
 import com.robot.security.service.dto.AuthUserDto;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @RestController
 @RequestMapping("/api/auth")
-@Api(tags = "系统授权接口")
+@Api(tags = "system authentication interface")
 public class AuthController {
 
     private final AuthService authService;
@@ -25,26 +25,26 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @ApiOperation("发送邮箱验证码")
+    @ApiOperation("send code to the email")
     @PostMapping(value = "/getEmailCode")
     public ResponseEntity<Object> getEmailCode(@RequestParam String email) {
         authService.sendMailCode(email);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @ApiOperation("注册")
+    @ApiOperation("register")
     @PostMapping(value = "/register")
     public ResponseEntity<Object> register(@RequestBody AuthUserDto authUserDto) {
         return ResponseEntity.ok(authService.register(authUserDto));
     }
 
-    @ApiOperation("登录授权")
+    @ApiOperation("login")
     @PostMapping(value = "/login")
-    public ResponseEntity<Object> login(@RequestBody AuthUserDto authUserDto, HttpServletRequest request) {
-        return ResponseEntity.ok(authService.login(authUserDto, request));
+    public ResponseEntity<Object> login(@RequestBody AuthUserDto authUserDto) {
+        return ResponseEntity.ok(authService.login(authUserDto));
     }
 
-    @ApiOperation("退出登录")
+    @ApiOperation("logout")
     @DeleteMapping(value = "/logout")
     public ResponseEntity<Object> logout(HttpServletRequest request) {
         authService.logout(request);
