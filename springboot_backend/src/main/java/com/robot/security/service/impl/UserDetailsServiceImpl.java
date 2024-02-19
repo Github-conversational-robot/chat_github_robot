@@ -47,13 +47,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             user = sysUserService.findByUserName(username);
         } catch (RuntimeException e) {
             // SpringSecurity会自动转换UsernameNotFoundException为BadCredentialsException
-            throw new UsernameNotFoundException("无此用户", e);
+            throw new UsernameNotFoundException("cannot find the user", e);
         }
         if (user == null) {
-            throw new UsernameNotFoundException("无此用户");
+            throw new UsernameNotFoundException("cannot find the user");
         } else {
             if (!user.getEnabled()) {
-                throw new RuntimeException("账号未激活");
+                throw new RuntimeException("account is inactive");
             }
             return new JwtUserDto(
                     user,

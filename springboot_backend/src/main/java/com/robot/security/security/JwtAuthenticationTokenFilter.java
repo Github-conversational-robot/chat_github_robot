@@ -38,7 +38,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(jwtSecurityProperties.getTokenStartWith())) {
             token = bearerToken.substring(jwtSecurityProperties.getTokenStartWith().length());
         }
-
+        // check wehtehr token is valid
         if (StringUtils.hasText(token) && jwtTokenUtils.validateToken(token)) {
             Authentication authentication = jwtTokenUtils.getAuthentication(token);
             if (authentication != null) {
@@ -48,6 +48,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         } else {
             log.debug("no valid JWT token found, uri: {}", requestRri);
         }
+        // 放行
         filterChain.doFilter(httpServletRequest, httpServletResponse);
 
     }

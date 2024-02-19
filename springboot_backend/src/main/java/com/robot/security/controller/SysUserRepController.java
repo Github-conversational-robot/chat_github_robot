@@ -40,7 +40,6 @@ public class SysUserRepController {
     @ApiOperation("上传仓库地址")
     @PostMapping("/loadfile")
     public ResponseEntity<Object> uploadFile(@RequestBody String filePath) {
-        // System.out.println(filePath);
         return ResponseEntity.ok(sysUserRepService.create(filePath));
     }
 }

@@ -3,6 +3,7 @@ package com.robot.security.service.impl;
 import com.robot.security.domain.SysUserRep;
 import com.robot.security.mapper.SysUserRepoMapper;
 import com.robot.security.service.SysUserRepService;
+import com.robot.security.utils.GitCloneUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -22,7 +23,6 @@ public class SysUserRepServiceImpl implements SysUserRepService{
 
     private final SysUserRepoMapper sysUserRepoMapper;
     private String getCurrentLoginUserName() {
-
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null) {
             throw new RuntimeException("登录状态已过期");
@@ -40,11 +40,17 @@ public class SysUserRepServiceImpl implements SysUserRepService{
         // TODO: change into a util class
         SysUserRep sysUserRep = new SysUserRep();
         sysUserRep.setUser_email(getCurrentLoginUserName());
-        sysUserRep.setRepository_address(filePath);
+        sysUserRep.setRepository_address(filePath.substring(1, filePath.length() - 1));
         String[] parts = filePath.split("/");
         String temp = parts[parts.length - 1];
         String[] fileName = temp.split("\\.");
         sysUserRep.setRepository_name(fileName[0]);
+        // clone the code to the folder
+        System.out.println(sysUserRep.getRepository_address());
+        if(!GitCloneUtils.clone(sysUserRep.getRepository_address(), sysUserRep.getRepository_name())){
+            throw new RuntimeException("cannot clone the repository");
+        }
+        //TODO: send message to the python project
         if (sysUserRepoMapper.insert(sysUserRep) > 0) {
             return sysUserRep;
         }
