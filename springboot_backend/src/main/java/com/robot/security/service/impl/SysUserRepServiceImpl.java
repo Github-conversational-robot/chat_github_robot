@@ -45,12 +45,14 @@ public class SysUserRepServiceImpl implements SysUserRepService{
         String temp = parts[parts.length - 1];
         String[] fileName = temp.split("\\.");
         sysUserRep.setRepository_name(fileName[0]);
+        //TODO: check whether the repository has existed in the database
         // clone the code to the folder
         System.out.println(sysUserRep.getRepository_address());
         if(!GitCloneUtils.clone(sysUserRep.getRepository_address(), sysUserRep.getRepository_name())){
             throw new RuntimeException("cannot clone the repository");
         }
         //TODO: send message to the python project
+
         if (sysUserRepoMapper.insert(sysUserRep) > 0) {
             return sysUserRep;
         }
