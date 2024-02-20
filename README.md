@@ -9,7 +9,8 @@
 springboot, mybatis, matrix one, spring security
 
 ## milestone
-1-26 构建github action CI流程
+### 2-20
+  集成swagger到springboot中，方便接口文档配置
 
 
 ## 贡献规则
