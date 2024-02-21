@@ -11,6 +11,9 @@ springboot, mybatis, matrix one, spring security
 ## milestone
 ### 2-20
   集成swagger到springboot中，方便接口文档配置
+  修改了仓库存储逻辑，分为了仓库表和用户对应仓库两张表
+### 2-21
+  完成了HTTP Client的实现及测试
 
 
 ## 贡献规则
