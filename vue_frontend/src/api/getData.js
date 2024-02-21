@@ -6,13 +6,7 @@ let baseUrl = base.baseUrl
 // 获取好友
 export const getFriend = id => {
     
-    /*
-    return axios({
-      method: 'post',
-      baseURL: `${baseUrl}/friend/friendList`,
-      data: id
-    }).then(res => res.data)
-    */
+    // get user repository
     return request({
       url: '/api/user/repository',
       method: 'get',

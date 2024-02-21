@@ -1,6 +1,7 @@
 package com.robot.security.controller;
 
 import com.robot.security.domain.SysRepCard;
+import com.robot.security.service.RepositoryService;
 import com.robot.security.service.SysUserRepService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,11 +18,12 @@ import java.util.List;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/repository")
-@Api(tags = "用户仓库信息")
-public class SysUserRepController {
-    @Autowired
+@RequestMapping("/api/user/repository")
+@Api(tags = "用户上传仓库信息")
+public class UserRepositoryController {
+
     private final SysUserRepService sysUserRepService;
+    private final RepositoryService repositoryService;
 
     @ApiOperation("查找用户对应仓库")
     @GetMapping()
@@ -39,8 +41,13 @@ public class SysUserRepController {
     }
 
     @ApiOperation("上传仓库地址")
-    @PostMapping("/loadfile")
-    public ResponseEntity<Object> uploadFile(@RequestBody String filePath) {
+    @PostMapping("/uploadPath")
+    public ResponseEntity<Object> uploadPath(@RequestBody String filePath) {
+        // check whether exist
+        if(repositoryService.findRepository(filePath) == null){
+            repositoryService.create(filePath);
+        }
+        // add to the database
         return ResponseEntity.ok(sysUserRepService.add(filePath));
     }
 }

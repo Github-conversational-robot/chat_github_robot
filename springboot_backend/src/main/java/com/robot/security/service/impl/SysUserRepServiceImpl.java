@@ -21,6 +21,7 @@ import java.util.List;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class SysUserRepServiceImpl implements SysUserRepService{
 
+    // help get the current login user in current thread
     private final SysUserRepoMapper sysUserRepoMapper;
     private String getCurrentLoginUserName() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -36,7 +37,7 @@ public class SysUserRepServiceImpl implements SysUserRepService{
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public SysUserRep create(String filePath){
+    public SysUserRep add(String filePath){
         // TODO: change into a util class
         SysUserRep sysUserRep = new SysUserRep();
         sysUserRep.setUser_email(getCurrentLoginUserName());
@@ -45,21 +46,11 @@ public class SysUserRepServiceImpl implements SysUserRepService{
         String temp = parts[parts.length - 1];
         String[] fileName = temp.split("\\.");
         sysUserRep.setRepository_name(fileName[0]);
-        //TODO: check whether the repository has existed in the database
-        // clone the code to the folder
-        System.out.println(sysUserRep.getRepository_address());
-        if(!GitCloneUtils.clone(sysUserRep.getRepository_address(), sysUserRep.getRepository_name())){
-            throw new RuntimeException("cannot clone the repository");
-        }
-        //TODO: send message to the python project
-
         if (sysUserRepoMapper.insert(sysUserRep) > 0) {
             return sysUserRep;
         }
-        throw new RuntimeException("增加用户仓库失败");
-
+        throw new RuntimeException("增加用户对应仓库失败");
     }
-
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -67,6 +58,5 @@ public class SysUserRepServiceImpl implements SysUserRepService{
         return sysUserRepoMapper.selectUserReps(getCurrentLoginUserName());
 
     }
-
 
 }

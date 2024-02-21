@@ -37,13 +37,8 @@ public class Swagger2Config {
                 .version("1.0").build();
     }
 
-    /**
-     * @Description: 设置swagger文档中全局参数
-     * @param
-     * @Date: 2020/9/11 10:15
-     * @return: java.util.List<springfox.documentation.service.Parameter>
-     */
 
+    // set chinese language
     private List<Parameter> setHeaderToken() {
         List<Parameter> pars = new ArrayList<>();
         ParameterBuilder userId = new ParameterBuilder();

@@ -11,9 +11,7 @@ public interface SysUserRepService {
      * @param filePath 待新增的仓库
      * @return 增加成功的仓库
      */
-    SysUserRep create(String filePath);
-
-
+    SysUserRep add(String filePath);
 
     /**
      * 查找仓库在数据库的存储地址
