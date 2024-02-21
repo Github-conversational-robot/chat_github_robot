@@ -96,6 +96,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 放行OPTIONS请求
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
+                //放行测试请求
+                .antMatchers("/test/message").permitAll()
+
                 //允许匿名及登录用户访问
                 .antMatchers("/api/auth/**", "/api/guest/**", "/error/**").permitAll()
                 // 其他请求都需要认证
