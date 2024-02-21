@@ -4,7 +4,7 @@ from langchain.document_loaders import PyPDFLoader
 from langchain.document_loaders import Docx2txtLoader
 from langchain.document_loaders import TextLoader
 
-from config import Config
+from .config import Config
 config = Config()
 
 # TODO: 兼容更多文件格式的加载
