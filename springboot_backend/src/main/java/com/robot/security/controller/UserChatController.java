@@ -25,6 +25,6 @@ public class UserChatController {
         System.out.println(userChatMes.getFilePath());
         System.out.println(userChatMes.getInputMes());
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                chatService.chatOneTime(userChatMes.getInputMes()));
+                chatService.chatOneTime(userChatMes.getInputMes(), userChatMes.getFilePath()));
     }
 }

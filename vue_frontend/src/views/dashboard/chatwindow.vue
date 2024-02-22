@@ -124,7 +124,7 @@ export default {
         frinedId: this.frinedInfo.id,
       };
       getChatMsg(params).then((res) => {
-        this.chatList = [        {
+        this.chatList = [{
             headImg: require("@/assets/img/head_portrait1.png"),
             name: "github robot",
             //time: "09：12 AM",
@@ -169,7 +169,7 @@ export default {
           uid: "1001", //uid
         };
         this.sendMsg(chatMsg);
-        this.$emit('personCardSort', this.frinedInfo.id)
+        this.$emit('personCardSort', this.frinedInfo.name)
         this.loading = true
         this.isSend = true;
         let chatGPT = {
@@ -181,7 +181,7 @@ export default {
           uid: "1002", //uid
         };
         let data = {
-        filePath : "www.github.com",
+        filePath : this.frinedInfo.name,
         inputMes : this.inputMsg,
         }
         console.log(this.inputMsg);

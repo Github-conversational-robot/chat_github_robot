@@ -16,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class ChatServiceImpl implements ChatService {
 
     @Override
-    public String chatOneTime(String mes) {
+    public String chatOneTime(String mes, String name) {
         Client client = new HttpClient();
-        return client.sendMessage(mes);
+        return client.sendMessage(mes, name);
     }
 }
