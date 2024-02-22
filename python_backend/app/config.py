@@ -4,8 +4,8 @@ class Config:
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
-            cls._instance.OPENAI_API_KEY = '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'
-            cls._instance.PATH_TO_GITREPO_DIR = './gitRepo/'
+            cls._instance.OPENAI_API_KEY = '<>'
+            cls._instance.PATH_TO_GITREPO_DIR = '../gitRepo/'
             cls._instance.DATABASE_USER = 'root'
             cls._instance.DATABASE_PSW = '111'
             cls._instance.DATABASE_DBNAME = 'test'
