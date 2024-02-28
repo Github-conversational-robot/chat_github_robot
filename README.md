@@ -15,8 +15,10 @@ springboot, mybatis, matrix one, spring security
 ### 2-21
   完成了HTTP Client的实现及测试
 ### 2-23
-  将python backend 修改成了使用文心一言接口，来解决chatgpt key无法使用问题。
+  将python backend 修改成了使用文心一言接口，来解决chatgpt key无法使用问题。<br>
   录制了问答my_malloc的demo视频
+### 2-25
+  对对话存储进行了优化，采用redis进行缓存，并使用spring scheduler进行定时更新。<br>
 
 
 ## 贡献规则
