@@ -15,9 +15,13 @@ public interface SysUserRepService {
 
     /**
      * 查找仓库在数据库的存储地址
-     *
      * @return 对应仓库列表
      */
     List<String> findRepByEmail();
+
+    /**
+     * 获取当前登录用户名字
+     */
+    public String getCurrentLoginUserName();
 
 }

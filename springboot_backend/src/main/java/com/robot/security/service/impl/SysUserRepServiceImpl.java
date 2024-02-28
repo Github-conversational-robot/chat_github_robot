@@ -23,7 +23,7 @@ public class SysUserRepServiceImpl implements SysUserRepService{
 
     // help get the current login user in current thread
     private final SysUserRepoMapper sysUserRepoMapper;
-    private String getCurrentLoginUserName() {
+    public String getCurrentLoginUserName() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null) {
             throw new RuntimeException("登录状态已过期");

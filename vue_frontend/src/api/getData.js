@@ -28,18 +28,19 @@ export const getChatMsg = params => {
     /*
     return axios({
       method: 'post',
-      url: `https://api.openai.com/v1/completions`,
+      url: `https://api.openai.com/v1/engines/davinci/completions`,
       data: params,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`,
+        'Authorization': `Bearer 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`,
       }
-    }).then(res => res.data)
+    })
     */
-
+    
     return request({
       url: '/api/user/chat',
       method: 'post',
       data:params
     })
+    
   }

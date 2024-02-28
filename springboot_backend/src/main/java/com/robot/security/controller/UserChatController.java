@@ -22,8 +22,8 @@ public class UserChatController {
     @PostMapping("/chat")
     public ResponseEntity<Object> chatWithRobot(@RequestBody UserChatMesDto userChatMes) {
         // file path is the name of the gitjhub responsibility
-        System.out.println(userChatMes.getFilePath());
-        System.out.println(userChatMes.getInputMes());
+        // System.out.println(userChatMes.getFilePath());
+        // System.out.println(userChatMes.getInputMes());
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 chatService.chatOneTime(userChatMes.getInputMes(), userChatMes.getFilePath()));
     }

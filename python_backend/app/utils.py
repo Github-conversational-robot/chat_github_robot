@@ -3,7 +3,10 @@ import os
 from langchain.document_loaders import PyPDFLoader
 from langchain.document_loaders import Docx2txtLoader
 from langchain.document_loaders import TextLoader
+from langchain_wenxin import ChatWenxin
+from langchain_community.document_loaders import UnstructuredMarkdownLoader
 
+from .matrixone import *
 from .config import Config
 config = Config()
 
@@ -12,13 +15,17 @@ def load_documents_from_folder(base_dir):
     documents = []
 
     def load_documents_from_file(file_path):
-        if file_path.endswith('.pdf'):
-            loader = PyPDFLoader(file_path)
-            documents.extend(loader.load())
-        elif file_path.endswith('.docx'):
-            loader = Docx2txtLoader(file_path)
-            documents.extend(loader.load())
-        elif file_path.endswith('.go'):
+
+        #if file_path.endswith('.pdf'):
+        #    loader = PyPDFLoader(file_path)
+        #    documents.extend(loader.load())
+        #elif file_path.endswith('.docx'):
+         #   loader = Docx2txtLoader(file_path)
+          #  documents.extend(loader.load())
+        #if file_path.endswith('.md'):
+        #    loader = UnstructuredMarkdownLoader(file_path)
+        #    documents.extend(loader.load())
+        if file_path.endswith('.c') or file_path.endswith('.cpp') or file_path.endswith('.java') or file_path.endswith('.go') or file_path.endswith('.py'):
             loader = TextLoader(file_path)
             documents.extend(loader.load())
 
@@ -56,7 +63,14 @@ def generate_qa_chain(vectorstore):
 
     # 实例化一个大模型工具 - OpenAI的GPT-3.5
     # llm = ChatOpenAI(model_name= config.LLM_MODEL_NAME'], temperature=0)
-    llm = ChatOpenAI(model_name= 'gpt-3.5-turbo', temperature=0)
+    # llm = ChatOpenAI(model_name= 'gpt-3.5-turbo', temperature=0)
+    llm = ChatWenxin(
+        temperature=0.9,
+        model="ernie-bot-turbo",
+        baidu_api_key="k6Agl8y3sHxnnkAYPIHXU9sa",
+        baidu_secret_key="rVwhVb75PUxyH2eLojRt28qbtNsZuvlS",
+        verbose=True,
+    )
 
     # 实例化一个MultiQueryRetriever
     retriever_from_llm = MultiQueryRetriever.from_llm(retriever=vectorstore.as_retriever(), llm=llm)
@@ -76,8 +90,9 @@ def check_repo_folder_exists(repoName):
         return False
 
 # 数据库的相关操作
-from langchain.vectorstores import Matrixone
-from langchain.embeddings import OpenAIEmbeddings
+#from langchain.vectorstores import Matrixone
+#from langchain.embeddings import OpenAIEmbeddings
+from langchain_wenxin.embeddings import WenxinEmbeddings
 def get_vectorstore(repoName):
     return Matrixone(
         host=config.DATABASE_HOST,
@@ -86,7 +101,8 @@ def get_vectorstore(repoName):
         password=config.DATABASE_PSW,
         dbname=config.DATABASE_DBNAME,
         table_name=repoName,
-        embedding=OpenAIEmbeddings()
+        embedding=WenxinEmbeddings( model="embedding-v1", baidu_api_key="k6Agl8y3sHxnnkAYPIHXU9sa", baidu_secret_key="rVwhVb75PUxyH2eLojRt28qbtNsZuvlS")
+
     )
 
 def add_documents_to_vectorstore(repoName, chunked_documents):
