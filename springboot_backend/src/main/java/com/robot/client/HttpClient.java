@@ -17,16 +17,14 @@ public class HttpClient implements Client{
         json.put("userID", "testUser");
         json.put("repoName", name);
         RestTemplate restTemplate = new RestTemplate();
+        // for test
+        //return "test 01";
         //TODO: change the hard code
-        //String url = "http://localhost:8000/test/message";
-        /*
-        <string:repoName>/<int:userID>/<string:question>
-         */
         String url = "http://localhost:5000/talks/{repoName}/{userID}/{question}";
-        // String result = restTemplate.postForObject(url, json, String.class);
         String result = restTemplate.getForObject(url,String.class, json);
         System.out.println(result);
         return result;
+
     }
 
     @Override

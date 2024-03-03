@@ -28,16 +28,9 @@ public class RepositoryServiceImpl implements RepositoryService {
         // download from internet
         String projectName = HandleGithubAddUtils.getName(address);
         String projectAddress = HandleGithubAddUtils.getAddress(address);
-        /*
-        if(!GitCloneUtils.clone(projectAddress, projectName)){
-            throw new RuntimeException("无法拉取该仓库");
-        }
-        */
-
         // send messages to the python backend
         Client client = new HttpClient();
         client.sendRepName(projectName);
-
         Repository rep = new Repository();
         rep.setAddress(projectAddress);
         rep.setName(projectName);
@@ -50,9 +43,10 @@ public class RepositoryServiceImpl implements RepositoryService {
 
     @Override
     public Repository findRepository(String address) {
+        String raw_string = address.substring(1, address.length() - 1);
         return repositoryMapper.selectOne(new QueryWrapper<Repository>()
                                         .lambda()
-                                        .eq(Repository::getAddress, address));
+                                        .eq(Repository::getAddress, raw_string));
     }
 
 
