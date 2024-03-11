@@ -1,20 +1,16 @@
-  <p align="center">
-   <img alt="MatrixOne All in One" height="50" src="https://github.com/matrixorigin/artwork/blob/main/docs/overview/logo.png?raw=true">
-  </p>
-# chat_github_robot
 
  <img src="https://img.shields.io/badge/platform-MacOS-white.svg" alt="macos"/> <img src="https://img.shields.io/badge/platform-Linux-9cf.svg" alt="linux"/> <img src="https://img.shields.io/badge/License-Apache%202.0-red.svg" alt="license"/> <img src="https://img.shields.io/badge/Language-Java-blue.svg" alt="language"/> <img src="https://img.shields.io/badge/Language-Python-green.svg" alt="language"/>
 <br>
-<br>
-<br>
-## intro
-本项目希望开发一个github仓库对话机器人。用户通过输入仓库对应URL后，机器人能够回答关于仓库的相关信息，帮助用户学习使用相应仓库。
+# chat_github_robot
+
+本项目希望开发一个github仓库对话机器人。用户通过输入仓库对应URL后，机器人能够回答关于仓库的相关信息，帮助用户学习使用相应仓库。在系统设计上采用了**springboot** + **Flask**的混合框架。同时基于**matrix one**完成了向量存储 && 检索以构建本地知识库。
 
 ## 前端
 采用VUE编写，代码参考了 [https://github.com/seisgo/EllipseFit](https://gitee.com/mao-yongyao/chatroom)在此表示感谢！
-
+<br>
 ## 后端
-springboot, mybatis, matrix one, spring security
+💥 技术栈 **springboot**, **mybatis plus**, **matrix one**, **spring security**, **redis**, **mysql**, **flask** <br>
+### 🧃 相关问题及解决方案
 
 ## milestone
 ### 2-20
