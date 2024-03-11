@@ -1,5 +1,6 @@
 # chat_github_robot
-
+ <img src="https://img.shields.io/badge/platform-MacOS-white.svg" alt="macos"/>
+  <img src="https://img.shields.io/badge/platform-Linux-9cf.svg" alt="linux"/>
 本项目希望开发一个github仓库对话机器人。用户通过输入仓库对应URL后，机器人能够回答关于仓库的相关信息，帮助用户学习使用相应仓库。
 
 ## 前端
