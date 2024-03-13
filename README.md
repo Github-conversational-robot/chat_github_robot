@@ -76,27 +76,6 @@ MatrixOne的HSTAP数据库技术与Dell ObjectScale的可扩展对象存储相�
 
 
 
-#### 
-
-问题描述：
-
-
-
-
-
-
-
-## milestone
-### 2-20
-  集成swagger到springboot中，方便接口文档配置 <br>
-  修改了仓库存储逻辑，分为了仓库表和用户对应仓库两张表
-### 2-21
-  完成了HTTP Client的实现及测试
-### 2-23
-  将python backend 修改成了使用文心一言接口，来解决chatgpt key无法使用问题。<br>
-  录制了问答my_malloc的demo视频
-### 2-25
-  对对话存储进行了优化，采用redis进行缓存，并使用spring scheduler进行定时更新。<br>
 
 
 ## 贡献规则
