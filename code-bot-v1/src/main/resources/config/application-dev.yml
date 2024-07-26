@@ -1,0 +1,60 @@
+#config data source
+spring:
+  datasource:
+    druid:
+      db-type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      url: jdbc:log4jdbc:mysql://localhost:3306/startup_backend?useSSL=false
+      username: root
+      password:
+
+      # init connection
+      initial-size: 3
+      # min connection number
+      min-idle: 3
+      # max connection number
+      max-active: 15
+      # time out
+      max-wait: 5000
+      # check
+      time-between-eviction-runs-millis: 90000
+      # idle time
+      min-evictable-idle-time-millis: 1800000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+      validation-query: select 1
+
+      filters: stat
+      stat-view-servlet:
+        url-pattern: /druid/*
+        reset-enable: false
+
+      web-stat-filter:
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+
+#jwt
+jwt:
+  header: Authorization
+  # 令牌前缀
+  token-start-with: Bearer
+  # 必须使用最少88位的Base64对该令牌进行编码
+  base64-secret: Zmpqc2Q9ODcyZHNkZjIzM2OkNFJFUkZhMzIzMjQzMlJkaWHzMnIyMzk4dTMyamZra3NXMjMxM1QyMzMmKiZqZUxKRiZeKjFHTExQO0RKODk4NDNqcmUoKGlvZXdqZktKRE8zMnhjY08yS0ZLTlNmZ2hqb3AtPTFSV0VIUkVXRVc=
+  # 令牌过期时间 此处单位/毫秒 ，默认4小时
+  token-validity-in-seconds: 14400000
+  # 在线用户key
+  online-key: online-token
+  # 验证码
+  code-key: code-key
+
+#开启 swagger-ui
+swagger:
+  enabled: true
+
+# 文件存储路径
+uploadFile:
+  path: /Users/cengqingning/projects/robot/staticFile
+  # 文件大小 /M
+  maxSize: 50
