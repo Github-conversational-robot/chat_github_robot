@@ -31,24 +31,19 @@ MatrixOne的HSTAP数据库技术与Dell ObjectScale的可扩展对象存储相�
 
 ### 💬 对话
 
-支持多轮对话，帮助您持续学习。
-能够选择不同的仓库进行问答。
-**<font color = red>开发中​ </font>** ​ :briefcase:  通过 System Prompt的介入，使得bot能更精确的了解到您的需求。
-**<font color = red>开发中 </font>**  支持多人对话，帮助您进行多人协同工作。
+多轮对话支持： 帮助您在持续交流中不断学习和优化对话内容。<br>
+仓库选择功能： 允许您选择不同的知识仓库来获取最相关的回答。<br>
+多人协同支持： 便于在多个用户之间进行协作和讨论，提高团队效率。<br>
+**<font color = red>开发中​ </font>**:briefcase: :通过引入 Graph RAG 技术，提升 bot 对仓库内容的理解能力，从而提供更准确的回答。
 
 ### :card_file_box: 仓库管理
-
-**一键上传** 支持一键上传仓库，让gpt帮你完成量子速度:fire:。
+**一键上传**： 轻松上传您的仓库，快速启动 GPT 的量子速读功能，让智能助手迅速为您处理和分析数据。:fire:<br>
 **超细颗粒度更新** 支持根据不同版本的commit进行更新，帮助您从头开始了解项目。
 
 ### 📜 对话历史
 
-对话历史自动保存，一键查看。
-用户间对话记录📝相互隔离，最大程度保护您的隐私🔏。
-
-
-
-
+**历史消息**：对话历史自动保存，一键查看。<br>
+**bot记忆模块**：基于滑动窗口🪟,在多轮对话中让AI保持长期记忆。
 
 ## 前端
 采用VUE编写，代码参考了 [https://github.com/seisgo/EllipseFit](https://gitee.com/mao-yongyao/chatroom)在此表示感谢！
@@ -59,24 +54,7 @@ MatrixOne的HSTAP数据库技术与Dell ObjectScale的可扩展对象存储相�
 
 ## 后端
 💥 技术栈 **springboot**, **mybatis plus**, **matrix one**, **spring security**, **redis**, **mysql**, **flask** <br>
-
   <code><img width="10%" src="https://www.vectorlogo.zone/logos/java/java-ar21.svg"></code><img width="10%" src="https://www.vectorlogo.zone/logos/springio/springio-ar21.svg"><code><img width="10%" src="https://www.vectorlogo.zone/logos/mysql/mysql-ar21.svg"></code>  <code><img width="10%" src="https://www.vectorlogo.zone/logos/redis/redis-ar21.svg"></code><img width="10%" src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-ar21.svg">
-
-
-
-### 🧃 相关问题及解决方案
-
-#### 分布式事务的最终一致性问题
-
-**Springboot**中对应的是用户下载仓库表，而**Flask**中为对应的文本向量表。必须保证两张表的<font color = red >最终一致性 </font>,以确保系统的正确运行。本项目采用rocketMq:rocket:进行解决。
-
-<img src="./img/Screenshot 2024-03-11 at 17.00.51.png" alt="Screenshot 2024-03-11 at 17.00.51" style="zoom:50%;" />
-
-
-
-
-
-
 
 ## 贡献规则
 参考contributing.md
